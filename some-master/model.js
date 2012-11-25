@@ -3,7 +3,7 @@ var path = require('path'),
 
 var model = {};
 
-model.serverRoot = path.join(__dirname, 'www');
+model.serverRoot = path.join(__dirname, 'Blog');
 
 model.hostPort = 81;
 
@@ -22,6 +22,13 @@ model.getFsPath = function(rPath){
 };
 
 model.getFileData = function(file){
+console.log(file+"CONTENT");
+
+var markdown = require('markdown').markdown;
+    var fs=require("fs");
+    var sat=fs.readFileSync(file,"qur");
+    var a=markdown.toHTML(sat);
+
     return {
         'content': misc.getFile(file),
         'title': path.basename(file, model.dynamicExt),
